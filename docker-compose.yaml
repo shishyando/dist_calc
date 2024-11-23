@@ -1,0 +1,42 @@
+version: '3'
+services:
+  master:
+    build: .
+    command: ./master 0 50 4
+    networks:
+      - local_network
+    depends_on:
+      - worker1
+      - worker2
+      - worker3
+      - worker4
+
+  worker1:
+    build: .
+    command: ./worker
+    networks:
+      - local_network
+
+  worker2:
+    build: .
+    command: ./worker
+    networks:
+      - local_network
+    privileged: true
+
+  worker3:
+    build: .
+    command: ./worker
+    networks:
+      - local_network
+
+  worker4:
+    build: .
+    command: ./worker
+    networks:
+      - local_network
+
+
+networks:
+  local_network:
+    driver: bridge
