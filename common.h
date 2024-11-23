@@ -1,6 +1,5 @@
 #pragma once
 
-#include <sys/_types/_socklen_t.h>
 #include <sys/fcntl.h>
 #include <sys/socket.h>
 #include <unistd.h>
@@ -16,7 +15,7 @@ inline const uint16_t DISCOVERY_PORT = 1337;
 inline const uint16_t WORK_PORT = 1338;
 inline const size_t BUFFER_SIZE = 256;
 inline const uint8_t TIMEOUT_SEC = 3;
-inline const uint8_t MIN_WORKERS = 2;
+inline const uint8_t MIN_WORKERS = 4;
 
 template <typename T>
 inline void SetSockOpt(int fd, int opt, const T& data) {

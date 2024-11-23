@@ -2,9 +2,10 @@ version: '3'
 services:
   master:
     build: .
-    command: ./master 0 50 4
+    command: ./master 0 200 7
     networks:
       - local_network
+    privileged: true
     depends_on:
       - worker1
       - worker2
@@ -16,6 +17,10 @@ services:
     command: ./worker
     networks:
       - local_network
+    privileged: true
+    environment:
+      ENABLE_PACKET_LOSS: "true"
+      ENABLE_PACKET_DUPLICATION: "false"
 
   worker2:
     build: .
@@ -23,19 +28,49 @@ services:
     networks:
       - local_network
     privileged: true
+    environment:
+      ENABLE_PACKET_LOSS: "false"
+      ENABLE_PACKET_DUPLICATION: "true"
 
   worker3:
     build: .
     command: ./worker
     networks:
       - local_network
+    privileged: true
+    environment:
+      ENABLE_PACKET_LOSS: "false"
+      ENABLE_PACKET_DUPLICATION: "false"
 
   worker4:
     build: .
     command: ./worker
     networks:
       - local_network
+    privileged: true
+    environment:
+      ENABLE_PACKET_LOSS: "true"
+      ENABLE_PACKET_DUPLICATION: "true"
 
+  worker5:
+    build: .
+    command: ./worker
+    networks:
+      - local_network
+    privileged: true
+    environment:
+      ENABLE_PACKET_LOSS: "true"
+      ENABLE_PACKET_DUPLICATION: "true"
+
+  worker6:
+    build: .
+    command: ./worker
+    networks:
+      - local_network
+    privileged: true
+    environment:
+      ENABLE_PACKET_LOSS: "true"
+      ENABLE_PACKET_DUPLICATION: "true"
 
 networks:
   local_network:

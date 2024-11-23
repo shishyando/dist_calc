@@ -11,4 +11,9 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 COPY . .
 
+COPY set_iptables.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/set_iptables.sh
+
 RUN cmake . && make
+
+ENTRYPOINT ["/usr/local/bin/set_iptables.sh"]

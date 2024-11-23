@@ -6,7 +6,6 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-#include <cstddef>
 #include <cstdlib>
 #include <iostream>
 
@@ -18,9 +17,11 @@ int main(int argc, char* argv[]) {
     const double left = std::stod(argv[1]);
     const double right = std::stod(argv[2]);
     const double task_size = std::stod(argv[3]);
+    std::cerr << "Running master: "
+              << "left = " << left << ", right = " << right << ", task_size = " << task_size << std::endl;
 
     WorkerManager worker_manager(left, right, task_size);
     worker_manager.DistributeTasks();
-    std::cout << worker_manager.CollectResult();
+    std::cout << "Result: " << worker_manager.CollectResult() << std::endl;
     return 0;
 }

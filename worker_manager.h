@@ -4,6 +4,7 @@
 #include "task_manager.h"
 #include "worker.h"
 
+#include <optional>
 #include <netinet/in.h>
 #include <unordered_map>
 #include <unordered_set>
